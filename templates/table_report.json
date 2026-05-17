@@ -1,0 +1,51 @@
+{
+  "_name": "表格报告",
+  "_description": "数据报告、统计表、财务表等。表格为主，文字为辅",
+  "_placeholders": {
+    "REPORT_TITLE": "报告标题",
+    "DATE": "日期",
+    "INTRO": "简介（1-2句）",
+    "TABLE_1_HEADING": "表1标题",
+    "COL_A": "列A",
+    "COL_B": "列B",
+    "COL_C": "列C",
+    "COL_D": "列D",
+    "TABLE_2_HEADING": "表2标题",
+    "NOTE": "备注/说明"
+  },
+  "title": "{{REPORT_TITLE}}",
+  "sections": [
+    {
+      "heading": "",
+      "level": 0,
+      "content": [
+        { "type": "paragraph", "text": "日期：{{DATE}}", "align": "right" },
+        { "type": "paragraph", "text": "{{INTRO}}", "bold": false }
+      ]
+    },
+    {
+      "heading": "{{TABLE_1_HEADING}}",
+      "level": 2,
+      "content": [
+        { "type": "table", "headers": ["{{COL_A}}", "{{COL_B}}", "{{COL_C}}", "{{COL_D}}"], "rows": [
+          ["{{R1C1}}", "{{R1C2}}", "{{R1C3}}", "{{R1C4}}"],
+          ["{{R2C1}}", "{{R2C2}}", "{{R2C3}}", "{{R2C4}}"],
+          ["{{R3C1}}", "{{R3C2}}", "{{R3C3}}", "{{R3C4}}"],
+          ["{{R4C1}}", "{{R4C2}}", "{{R4C3}}", "{{R4C4}}"]
+        ]}
+      ]
+    },
+    {
+      "heading": "{{TABLE_2_HEADING}}",
+      "level": 2,
+      "content": [
+        { "type": "table", "headers": ["项目", "数据", "同比", "备注"], "rows": [
+          ["{{ITEM_1}}", "{{DATA_1}}", "{{YOY_1}}", "{{NOTE_1}}"],
+          ["{{ITEM_2}}", "{{DATA_2}}", "{{YOY_2}}", "{{NOTE_2}}"],
+          ["{{ITEM_3}}", "{{DATA_3}}", "{{YOY_3}}", "{{NOTE_3}}"]
+        ]},
+        { "type": "paragraph", "text": "{{NOTE}}", "italic": true, "sz": "20" }
+      ]
+    }
+  ]
+}

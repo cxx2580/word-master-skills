@@ -1,0 +1,59 @@
+{
+  "_name": "通用报告",
+  "_description": "项目报告、实验报告、工作总结等",
+  "_placeholders": {
+    "REPORT_TITLE": "报告标题",
+    "DATE": "日期",
+    "AUTHOR": "作者/部门",
+    "SUMMARY": "摘要/概述（2-3句）",
+    "SECTION_HEADING": "章节标题",
+    "SECTION_BODY": "正文内容",
+    "CONCLUSION": "总结"
+  },
+  "title": "{{REPORT_TITLE}}",
+  "sections": [
+    {
+      "heading": "基本信息",
+      "level": 1,
+      "content": [
+        { "type": "paragraph", "text": "日期：{{DATE}}", "bold": false },
+        { "type": "paragraph", "text": "作者：{{AUTHOR}}", "bold": false }
+      ]
+    },
+    {
+      "heading": "摘要",
+      "level": 1,
+      "content": [
+        { "type": "paragraph", "text": "{{SUMMARY}}" }
+      ]
+    },
+    {
+      "heading": "{{SECTION_HEADING}}",
+      "level": 1,
+      "content": [
+        { "type": "paragraph", "text": "{{SECTION_BODY}}" }
+      ]
+    },
+    {
+      "heading": "数据与分析",
+      "level": 1,
+      "content": [
+        { "type": "table", "headers": ["指标", "数值", "备注"], "rows": [
+          ["{{METRIC_1}}", "{{VALUE_1}}", "{{NOTE_1}}"],
+          ["{{METRIC_2}}", "{{VALUE_2}}", "{{NOTE_2}}"],
+          ["{{METRIC_3}}", "{{VALUE_3}}", "{{NOTE_3}}"]
+        ]}
+      ]
+    },
+    {
+      "heading": "总结与建议",
+      "level": 1,
+      "content": [
+        { "type": "paragraph", "text": "{{CONCLUSION}}" },
+        { "type": "bullet", "text": "{{SUGGESTION_1}}" },
+        { "type": "bullet", "text": "{{SUGGESTION_2}}" },
+        { "type": "bullet", "text": "{{SUGGESTION_3}}" }
+      ]
+    }
+  ]
+}

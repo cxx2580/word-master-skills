@@ -1,0 +1,70 @@
+{
+  "_name": "简历",
+  "_description": "个人简历 / CV。中文风格，分块清晰",
+  "_placeholders": {
+    "NAME": "姓名",
+    "PHONE": "电话",
+    "EMAIL": "邮箱",
+    "ADDRESS": "地址",
+    "TARGET_POSITION": "求职意向",
+    "SUMMARY": "个人概述",
+    "EDUCATION_1": "教育经历1",
+    "EDUCATION_2": "教育经历2",
+    "EXPERIENCE_1": "工作/项目经历1",
+    "EXPERIENCE_2": "工作/项目经历2",
+    "EXPERIENCE_3": "工作/项目经历3",
+    "SKILL_1": "技能1",
+    "SKILL_2": "技能2",
+    "SKILL_3": "技能3",
+    "SKILL_4": "技能4"
+  },
+  "title": "个人简历",
+  "sections": [
+    {
+      "heading": "",
+      "level": 0,
+      "content": [
+        { "type": "paragraph", "text": "{{NAME}}", "align": "center", "bold": true, "sz": "36" },
+        { "type": "paragraph", "text": "{{PHONE}}  |  {{EMAIL}}  |  {{ADDRESS}}", "align": "center" },
+        { "type": "paragraph", "text": "求职意向：{{TARGET_POSITION}}", "align": "center", "bold": true }
+      ]
+    },
+    {
+      "heading": "个人概述",
+      "level": 1,
+      "content": [
+        { "type": "paragraph", "text": "{{SUMMARY}}" }
+      ]
+    },
+    {
+      "heading": "教育经历",
+      "level": 1,
+      "content": [
+        { "type": "bullet", "text": "{{EDUCATION_1}}" },
+        { "type": "bullet", "text": "{{EDUCATION_2}}" }
+      ]
+    },
+    {
+      "heading": "工作经历",
+      "level": 1,
+      "content": [
+        { "type": "paragraph", "text": "{{EXPERIENCE_1}}", "bold": true },
+        { "type": "paragraph", "text": "{{EXPERIENCE_1_DETAIL}}" },
+        { "type": "paragraph", "text": "{{EXPERIENCE_2}}", "bold": true },
+        { "type": "paragraph", "text": "{{EXPERIENCE_2_DETAIL}}" },
+        { "type": "paragraph", "text": "{{EXPERIENCE_3}}", "bold": true },
+        { "type": "paragraph", "text": "{{EXPERIENCE_3_DETAIL}}" }
+      ]
+    },
+    {
+      "heading": "专业技能",
+      "level": 1,
+      "content": [
+        { "type": "bullet", "text": "{{SKILL_1}}" },
+        { "type": "bullet", "text": "{{SKILL_2}}" },
+        { "type": "bullet", "text": "{{SKILL_3}}" },
+        { "type": "bullet", "text": "{{SKILL_4}}" }
+      ]
+    }
+  ]
+}

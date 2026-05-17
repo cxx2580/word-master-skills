@@ -1,0 +1,95 @@
+{
+  "_name": "会议纪要",
+  "_description": "会议记录、会议纪要。结构化记录讨论、决议和行动项",
+  "_placeholders": {
+    "MEETING_TITLE": "会议名称",
+    "DATE": "日期",
+    "TIME": "时间",
+    "LOCATION": "地点",
+    "HOST": "主持人",
+    "ATTENDEES": "参会人员",
+    "ABSENT": "缺席人员",
+    "RECORDER": "记录人",
+    "AGENDA_1": "议题1",
+    "AGENDA_2": "议题2",
+    "AGENDA_3": "议题3",
+    "AGENDA_4": "议题4",
+    "DISCUSSION_1": "讨论内容1",
+    "DISCUSSION_2": "讨论内容2",
+    "DECISION_1": "决议1",
+    "DECISION_2": "决议2",
+    "TASK_1": "行动项1",
+    "TASK_2": "行动项2",
+    "TASK_3": "行动项3",
+    "TASK_4": "行动项4",
+    "NEXT_MEETING": "下次会议时间",
+    "NOTES": "其他事项"
+  },
+  "title": "{{MEETING_TITLE}} - 会议纪要",
+  "sections": [
+    {
+      "heading": "会议信息",
+      "level": 1,
+      "content": [
+        { "type": "table", "headers": ["项目", "内容"], "rows": [
+          ["会议名称", "{{MEETING_TITLE}}"],
+          ["日期", "{{DATE}}"],
+          ["时间", "{{TIME}}"],
+          ["地点", "{{LOCATION}}"],
+          ["主持人", "{{HOST}}"],
+          ["参会人员", "{{ATTENDEES}}"],
+          ["缺席人员", "{{ABSENT}}"],
+          ["记录人", "{{RECORDER}}"]
+        ]}
+      ]
+    },
+    {
+      "heading": "会议议程",
+      "level": 1,
+      "content": [
+        { "type": "bullet", "text": "{{AGENDA_1}}" },
+        { "type": "bullet", "text": "{{AGENDA_2}}" },
+        { "type": "bullet", "text": "{{AGENDA_3}}" },
+        { "type": "bullet", "text": "{{AGENDA_4}}" }
+      ]
+    },
+    {
+      "heading": "讨论内容",
+      "level": 1,
+      "content": [
+        { "type": "paragraph", "text": "{{DISCUSSION_1}}", "bold": true },
+        { "type": "paragraph", "text": "{{DISCUSSION_1_DETAIL}}" },
+        { "type": "paragraph", "text": "{{DISCUSSION_2}}", "bold": true },
+        { "type": "paragraph", "text": "{{DISCUSSION_2_DETAIL}}" }
+      ]
+    },
+    {
+      "heading": "会议决议",
+      "level": 1,
+      "content": [
+        { "type": "bullet", "text": "{{DECISION_1}}" },
+        { "type": "bullet", "text": "{{DECISION_2}}" }
+      ]
+    },
+    {
+      "heading": "行动事项",
+      "level": 1,
+      "content": [
+        { "type": "table", "headers": ["任务", "负责人", "截止日期", "状态"], "rows": [
+          ["{{TASK_1}}", "{{TASK_1_OWNER}}", "{{TASK_1_DEADLINE}}", "{{TASK_1_STATUS}}"],
+          ["{{TASK_2}}", "{{TASK_2_OWNER}}", "{{TASK_2_DEADLINE}}", "{{TASK_2_STATUS}}"],
+          ["{{TASK_3}}", "{{TASK_3_OWNER}}", "{{TASK_3_DEADLINE}}", "{{TASK_3_STATUS}}"],
+          ["{{TASK_4}}", "{{TASK_4_OWNER}}", "{{TASK_4_DEADLINE}}", "{{TASK_4_STATUS}}"]
+        ]}
+      ]
+    },
+    {
+      "heading": "其他事项",
+      "level": 1,
+      "content": [
+        { "type": "bullet", "text": "下次会议：{{NEXT_MEETING}}" },
+        { "type": "paragraph", "text": "{{NOTES}}" }
+      ]
+    }
+  ]
+}

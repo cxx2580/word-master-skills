@@ -1,0 +1,54 @@
+{
+  "_name": "正式信函",
+  "_description": "商务信函、申请书、通知等",
+  "_placeholders": {
+    "SENDER_NAME": "发件人姓名",
+    "SENDER_TITLE": "发件人职务",
+    "SENDER_ORG": "发件人单位",
+    "SENDER_ADDRESS": "发件人地址",
+    "RECIPIENT_NAME": "收件人姓名",
+    "RECIPIENT_TITLE": "收件人职务",
+    "RECIPIENT_ORG": "收件人单位",
+    "RECIPIENT_ADDRESS": "收件人地址",
+    "DATE": "日期",
+    "SUBJECT": "事由",
+    "SALUTATION": "称呼（如：尊敬的XXX先生/女士）",
+    "BODY_1": "正文段落1",
+    "BODY_2": "正文段落2",
+    "BODY_3": "正文段落3",
+    "CLOSING": "结束语（如：此致敬礼）",
+    "SIGNATURE": "署名"
+  },
+  "title": "",
+  "sections": [
+    {
+      "heading": "",
+      "level": 0,
+      "content": [
+        { "type": "paragraph", "text": "{{SENDER_NAME}}", "align": "right" },
+        { "type": "paragraph", "text": "{{SENDER_TITLE}} · {{SENDER_ORG}}", "align": "right" },
+        { "type": "paragraph", "text": "{{SENDER_ADDRESS}}", "align": "right" },
+        { "type": "paragraph", "text": "{{DATE}}", "align": "right" },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "{{RECIPIENT_NAME}}  {{RECIPIENT_TITLE}}", "align": "left" },
+        { "type": "paragraph", "text": "{{RECIPIENT_ORG}}", "align": "left" },
+        { "type": "paragraph", "text": "{{RECIPIENT_ADDRESS}}", "align": "left" },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "事由：{{SUBJECT}}", "bold": true },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "{{SALUTATION}}：" },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "{{BODY_1}}" },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "{{BODY_2}}" },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "{{BODY_3}}" },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "{{CLOSING}}", "align": "right" },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "{{SIGNATURE}}", "align": "right" },
+        { "type": "paragraph", "text": "{{DATE}}", "align": "right" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "_name": "备忘录",
+  "_description": "内部备忘、工作记录、待办事项等",
+  "_placeholders": {
+    "MEMO_TITLE": "备忘录标题",
+    "TO": "致",
+    "FROM": "自",
+    "DATE": "日期",
+    "SUBJECT": "主题",
+    "BODY_1": "正文段落1",
+    "BODY_2": "正文段落2",
+    "ACTION_1": "待办事项1",
+    "ACTION_2": "待办事项2",
+    "ACTION_3": "待办事项3",
+    "ACTION_4": "待办事项4"
+  },
+  "title": "备忘录",
+  "sections": [
+    {
+      "heading": "{{MEMO_TITLE}}",
+      "level": 1,
+      "content": [
+        { "type": "table", "headers": ["项目", "内容"], "rows": [
+          ["致", "{{TO}}"],
+          ["自", "{{FROM}}"],
+          ["日期", "{{DATE}}"],
+          ["主题", "{{SUBJECT}}"]
+        ]},
+        { "type": "paragraph", "text": "{{BODY_1}}" },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "{{BODY_2}}" },
+        { "type": "paragraph", "text": "" },
+        { "type": "paragraph", "text": "待办事项：", "bold": true },
+        { "type": "bullet", "text": "{{ACTION_1}}" },
+        { "type": "bullet", "text": "{{ACTION_2}}" },
+        { "type": "bullet", "text": "{{ACTION_3}}" },
+        { "type": "bullet", "text": "{{ACTION_4}}" }
+      ]
+    }
+  ]
+}
