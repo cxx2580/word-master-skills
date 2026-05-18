@@ -10,7 +10,7 @@ description: >
 
 > Describe → scan → template-match → generate.  Zero config.
 
-**Full pipeline**: `Auto-install Engine → Match Template / Scan → Fill Content → Generate .docx → Verify`
+**Full pipeline**: `Auto-install Engine → Match Template / Scan → Fill Content → Generate .docx → Verify → Cleanup`
 
 ---
 
@@ -29,17 +29,17 @@ User asks for a document
   │
   ├─ User provides an existing .docx as reference?
   │     └─ YES → SCAN it:  python scripts/scan_docx.py input.docx template.json
-  │              → Review extracted JSON, fill content, generate
+  │              → Review extracted JSON, fill content, generate → CLEANUP temp files
   │
   ├─ Document type matches a known template?
   │     └─ YES → LOAD templates/<type>.json
   │              → Replace {{PLACEHOLDERS}} with user's content
-  │              → Generate
+  │              → Generate → CLEANUP temp files
   │
   └─ No template fits?
         └─ BUILD JSON from scratch
            → Ask 2-3 clarifying questions if vague
-           → Generate
+           → Generate → CLEANUP temp files
 ```
 
 ---
@@ -154,7 +154,9 @@ python "${SKILL_DIR}/scripts/generate_docx.py" <output.docx> <content.json>
 node "${SKILL_DIR}/scripts/generate_docx.js" <output.docx> <content.json>
 ```
 
-Always absolute paths. Temp JSON is cleaned up after generation.
+Always absolute paths.
+
+**AFTER generation, MUST delete the temp JSON file immediately.** Do not leave intermediate files in the user's directory.
 
 ---
 
@@ -232,4 +234,7 @@ When both are available, **always prefer Python**.
 
 1. Confirm file path and size
 2. Optional: `unzip -q <file.docx>` checks zip integrity
-3. User opens with Word / WPS / LibreOffice
+3. **MANDATORY: Delete temp JSON file** (e.g. `report_content.json`) — do NOT leave intermediate files in user's directory
+4. **MANDATORY: Delete Word lock files** (`~$*.doc`, `~$*.docx`) if any exist in the output directory
+5. Verify directory is clean: only final .docx + user's original files remain
+6. User opens with Word / WPS / LibreOffice
