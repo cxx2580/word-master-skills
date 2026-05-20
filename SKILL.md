@@ -10,7 +10,7 @@ description: >
 
 > Describe → scan → template-match → generate.  Zero config.
 
-**Full pipeline**: `Auto-install Engine → Match Template / Scan → Fill Content → Generate .docx → Verify → Cleanup`
+**Full pipeline**: `Auto-install Engine → Match Template / Scan → Fill Content → Generate .docx → Verify → Cleanup (mandatory)`
 
 ---
 
@@ -29,17 +29,20 @@ User asks for a document
   │
   ├─ User provides an existing .docx as reference?
   │     └─ YES → SCAN it:  python scripts/scan_docx.py input.docx template.json
-  │              → Review extracted JSON, fill content, generate → CLEANUP temp files
+  │              → Review extracted JSON, fill content, generate
+  │              → CLEANUP: run cleanup.py + delete scan temp JSON
   │
   ├─ Document type matches a known template?
   │     └─ YES → LOAD templates/<type>.json
   │              → Replace {{PLACEHOLDERS}} with user's content
-  │              → Generate → CLEANUP temp files
+  │              → Generate
+  │              → CLEANUP: run cleanup.py + delete filled JSON
   │
   └─ No template fits?
-        └─ BUILD JSON from scratch
+        └─ BUILD JSON from scratch / inline script
            → Ask 2-3 clarifying questions if vague
-           → Generate → CLEANUP temp files
+           → Generate
+           → CLEANUP: run cleanup.py + delete temp JSON + delete gen script
 ```
 
 ---
@@ -232,9 +235,39 @@ When both are available, **always prefer Python**.
 
 ## Post-Generation
 
-1. Confirm file path and size
-2. Optional: `unzip -q <file.docx>` checks zip integrity
-3. **MANDATORY: Delete temp JSON file** (e.g. `report_content.json`) — do NOT leave intermediate files in user's directory
-4. **MANDATORY: Delete Word lock files** (`~$*.doc`, `~$*.docx`) if any exist in the output directory
-5. Verify directory is clean: only final .docx + user's original files remain
-6. User opens with Word / WPS / LibreOffice
+### Mandatory Cleanup Checklist
+
+After generating the .docx, **ALL of the following MUST be cleaned**:
+
+| # | Item | Pattern | Method |
+|---|------|---------|--------|
+| 1 | Python gen scripts | `gen_report.py`, `gen_*.py`, `generate_*.py`, `make_doc*.py` | `rm` |
+| 2 | Temp JSON files | `*_content.json`, `*_temp.json`, `template.json` | `rm` |
+| 3 | npm bootstrap artifacts | `node_modules/`, `package.json`, `package-lock.json` (if only jszip) | `rm -rf` |
+| 4 | Word lock files | `~$*.docx`, `~$*.doc` | `rm` |
+| 5 | Empty pycache dirs | `__pycache__/` in working dir | `rm -rf` |
+
+### Auto Cleanup (Recommended)
+
+```bash
+python "${SKILL_DIR}/scripts/cleanup.py" <working_dir> --pycache
+```
+
+This script automatically detects and removes:
+- Python generation scripts (ones that import `docx.Document` or `JSZip`)
+- Temp JSON files matching `*_content.json`, `*_temp.json`, `template.json`
+- `node_modules/`, `package.json`, `package-lock.json` (only when package.json has just `jszip` as dep)
+- Word lock files (`~$*.docx`, `~$*.doc`)
+- `__pycache__/` directories (with `--pycache` flag)
+
+Run with `--dry-run` first to preview what would be removed:
+```bash
+python "${SKILL_DIR}/scripts/cleanup.py" <working_dir> --dry-run
+```
+
+### Manual Verification
+
+1. Confirm .docx file path and size
+2. Optional: `python -c "from zipfile import ZipFile; ZipFile('output.docx'); print('valid')"` checks zip integrity
+3. Verify directory is clean: only final .docx + user's original files remain
+4. User opens with Word / WPS / LibreOffice
